@@ -1,6 +1,6 @@
 import "./App.css";
 import Tetris from "react-tetris";
-import TetrisInner from "./TetrisBoard";
+import TetrisInner from "./TetrisInner";
 
 function App() {
   return (
