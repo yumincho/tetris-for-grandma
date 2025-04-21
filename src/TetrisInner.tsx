@@ -4,7 +4,8 @@ import {
   ControlBoard,
   ControlButton,
   FullGameBoard,
-  GameOverDialog,
+  Dialog,
+  Header,
   PauseButton,
   Stack,
 } from "./styledComponent";
@@ -12,6 +13,7 @@ import {
   FiChevronDown,
   FiChevronLeft,
   FiChevronRight,
+  FiPlay,
   FiRotateCw,
   FiStar,
 } from "react-icons/fi";
@@ -31,31 +33,65 @@ const TetrisInner = ({
   state: State;
   controller: Controller;
 }) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const gameOverDialogRef = useRef<HTMLDialogElement>(null);
+  const pauseDialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     if (state === "LOST") {
-      dialogRef.current?.showModal();
+      gameOverDialogRef.current?.showModal();
+    } else if (state === "PAUSED") {
+      pauseDialogRef.current?.showModal();
+    } else {
+      gameOverDialogRef.current?.close();
+      pauseDialogRef.current?.close();
     }
   }, [state]);
 
   const handleRestart = () => {
-    dialogRef.current?.close();
+    gameOverDialogRef.current?.close();
     controller.restart();
   };
 
+  const handleResume = () => {
+    pauseDialogRef.current?.close();
+    controller.resume();
+  };
+
+  const gameOverDialog = (
+    <Dialog ref={gameOverDialogRef}>
+      <h3>❤️ 게임 종료 ❤️</h3>
+      <div>{points} 점</div>
+      {points < 300 ? (
+        <div>다음에는 더 잘할 수 있어요!</div>
+      ) : points < 1000 ? (
+        <div>실력이 늘고 있어요!</div>
+      ) : (
+        <div>대단해요!</div>
+      )}
+      <PauseButton onClick={handleRestart}>새 게임 시작하기</PauseButton>
+    </Dialog>
+  );
+
+  const pauseDialog = (
+    <Dialog ref={pauseDialogRef}>
+      <PauseButton onClick={handleRestart}>새 게임 시작하기</PauseButton>
+      <PauseButton onClick={handleResume} backgroundColor="#bdddff">
+        <FiPlay />
+        <span>계속하기</span>
+      </PauseButton>
+    </Dialog>
+  );
+
   return (
     <div>
-      <Stack justifyContent="space-between" marginBottom={24}>
-        <Stack spacing={4}>
-          <FiStar size={24} /> 점수: {points}
-        </Stack>
-        <PlayButton state={state} controller={controller} />
-      </Stack>
       <FullGameBoard direction="column" disabled={state === "PAUSED"}>
-        <Stack marginBottom={12}>
-          <Gameboard />
-        </Stack>
+        <Header justifyContent="space-between" marginBottom={8}>
+          <Stack spacing={4}>
+            <FiStar size={24} /> 점수: {points}
+          </Stack>
+          <PlayButton state={state} controller={controller} />
+        </Header>
+        <Gameboard />
 
         <ControlBoard justifyContent="space-between" alignItems="center">
           <ControlButton onClick={controller.flipClockwise}>
@@ -76,20 +112,8 @@ const TetrisInner = ({
           </Stack>
         </ControlBoard>
       </FullGameBoard>
-      {state === "LOST" && (
-        <GameOverDialog ref={dialogRef}>
-          <h3>❤️ 게임 종료 ❤️</h3>
-          <div>{points} 점</div>
-          {points < 300 ? (
-            <div>다음에는 더 잘할 수 있어요!</div>
-          ) : points < 1000 ? (
-            <div>실력이 늘고 있어요!</div>
-          ) : (
-            <div>대단해요!</div>
-          )}
-          <PauseButton onClick={handleRestart}>새 게임 시작하기</PauseButton>
-        </GameOverDialog>
-      )}
+      {state === "LOST" && gameOverDialog}
+      {state === "PAUSED" && pauseDialog}
     </div>
   );
 };

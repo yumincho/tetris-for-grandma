@@ -1,4 +1,4 @@
-import { FiPause, FiPlay } from "react-icons/fi";
+import { FiCheck, FiPause } from "react-icons/fi";
 import { Controller } from "react-tetris";
 import { State } from "react-tetris/lib/models/Game";
 import { PauseButton } from "./styledComponent";
@@ -13,9 +13,9 @@ const PlayButton = ({
   switch (state) {
     case "PAUSED":
       return (
-        <PauseButton onClick={controller.resume}>
-          <FiPlay />
-          <span>계속하기</span>
+        <PauseButton>
+          <FiPause />
+          <span>멈춤</span>
         </PauseButton>
       );
     case "PLAYING":
@@ -27,9 +27,9 @@ const PlayButton = ({
       );
     case "LOST":
       return (
-        <PauseButton onClick={controller.restart}>
-          <FiPlay />
-          <span>새 게임</span>
+        <PauseButton>
+          <FiCheck />
+          <span>게임 종료</span>
         </PauseButton>
       );
   }

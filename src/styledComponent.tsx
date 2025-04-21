@@ -29,7 +29,7 @@ export const ControlBoard = styled(Stack)`
   width: 100%;
 `;
 
-export const GameOverDialog = styled.dialog`
+export const Dialog = styled.dialog`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -51,14 +51,21 @@ export const FullGameBoard = styled(Stack)<{ disabled?: boolean }>`
   width: 80vw;
 `;
 
-export const PauseButton = styled.button`
+export const PauseButton = styled.button<{ backgroundColor?: string }>`
+  background-color: ${(props) => props.backgroundColor || "#f5f5f5"};
   display: flex;
   border: 2px solid #ddd;
   height: fit-content;
+  align-items: center;
   justify-content: center;
   min-width: 9rem;
   flex-shrink: 0;
+  padding: 0.5rem 1rem;
   span {
     flex: 1;
   }
+`;
+
+export const Header = styled(Stack)`
+  width: 100%;
 `;

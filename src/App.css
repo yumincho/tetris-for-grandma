@@ -40,7 +40,8 @@
 
 button:focus,
 button:hover,
-button:active {
+button:active,
+button:focus-visible {
   outline: none;
   box-shadow: none;
 }
