@@ -11,6 +11,7 @@ import {
   FiChevronLeft,
   FiChevronRight,
   FiCrosshair,
+  FiRotateCw,
   FiStar,
 } from "react-icons/fi";
 import PlayButton from "./PlayButton";
@@ -66,18 +67,23 @@ const TetrisInner = ({
           <PieceQueue />
         </Stack>
 
-        <Stack direction="column" spacing={8}>
-          <Stack spacing={24} justifyContent="center">
-            <ControlButton onClick={controller.moveLeft}>
-              <FiChevronLeft size={24} />
-            </ControlButton>
-            <ControlButton onClick={controller.moveRight}>
-              <FiChevronRight size={24} />
+        <Stack justifyContent="space-between" alignItems="center">
+          <ControlButton onClick={controller.flipClockwise}>
+            <FiRotateCw size={24} />
+          </ControlButton>
+          <Stack direction="column" spacing={8}>
+            <Stack spacing={24} justifyContent="center">
+              <ControlButton onClick={controller.moveLeft}>
+                <FiChevronLeft size={24} />
+              </ControlButton>
+              <ControlButton onClick={controller.moveRight}>
+                <FiChevronRight size={24} />
+              </ControlButton>
+            </Stack>
+            <ControlButton onClick={controller.moveDown}>
+              <FiChevronDown size={24} />
             </ControlButton>
           </Stack>
-          <ControlButton onClick={controller.moveDown}>
-            <FiChevronDown size={24} />
-          </ControlButton>
         </Stack>
       </FullGameBoard>
       {state === "LOST" && (
