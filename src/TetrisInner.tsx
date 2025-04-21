@@ -5,13 +5,13 @@ import {
   ControlButton,
   FullGameBoard,
   GameOverDialog,
+  PauseButton,
   Stack,
 } from "./styledComponent";
 import {
   FiChevronDown,
   FiChevronLeft,
   FiChevronRight,
-  FiCrosshair,
   FiRotateCw,
   FiStar,
 } from "react-icons/fi";
@@ -21,7 +21,6 @@ import { State } from "react-tetris/lib/models/Game";
 const TetrisInner = ({
   Gameboard,
   points,
-  linesCleared,
   state,
   controller,
 }: {
@@ -48,13 +47,8 @@ const TetrisInner = ({
   return (
     <div>
       <Stack justifyContent="space-between" marginBottom={24}>
-        <Stack direction="column" spacing={4} alignItems="flex-start">
-          <Stack spacing={4}>
-            <FiStar /> 점수: {points}
-          </Stack>
-          <Stack spacing={4}>
-            <FiCrosshair /> 지운 줄 개수: {linesCleared}
-          </Stack>
+        <Stack spacing={4}>
+          <FiStar size={24} /> 점수: {points}
         </Stack>
         <PlayButton state={state} controller={controller} />
       </Stack>
@@ -84,8 +78,16 @@ const TetrisInner = ({
       </FullGameBoard>
       {state === "LOST" && (
         <GameOverDialog ref={dialogRef}>
-          <h2>게임 종료!</h2>
-          <button onClick={handleRestart}>새 게임 시작하기</button>
+          <h3>❤️ 게임 종료 ❤️</h3>
+          <div>{points} 점</div>
+          {points < 300 ? (
+            <div>다음에는 더 잘할 수 있어요!</div>
+          ) : points < 1000 ? (
+            <div>실력이 늘고 있어요!</div>
+          ) : (
+            <div>대단해요!</div>
+          )}
+          <PauseButton onClick={handleRestart}>새 게임 시작하기</PauseButton>
         </GameOverDialog>
       )}
     </div>

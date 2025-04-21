@@ -30,16 +30,17 @@ export const ControlBoard = styled(Stack)`
 `;
 
 export const GameOverDialog = styled.dialog`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   padding: 2rem;
   border: 2px solid #ddd;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  justify-items: center;
   position: fixed;
   &:backdrop {
-    backdrop-filter: blur(4px);
-    background: rgb(0 0 0 / 10%);
+    background: rgb(0 0 0 / 20%);
   }
 `;
 
@@ -54,9 +55,9 @@ export const PauseButton = styled.button`
   display: flex;
   border: 2px solid #ddd;
   height: fit-content;
-  align-items: center;
-  width: 8rem;
-
+  justify-content: center;
+  min-width: 9rem;
+  flex-shrink: 0;
   span {
     flex: 1;
   }
