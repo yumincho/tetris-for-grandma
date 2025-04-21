@@ -20,7 +20,6 @@ import { State } from "react-tetris/lib/models/Game";
 
 const TetrisInner = ({
   Gameboard,
-  PieceQueue,
   points,
   linesCleared,
   state,
@@ -60,9 +59,8 @@ const TetrisInner = ({
         <PlayButton state={state} controller={controller} />
       </Stack>
       <FullGameBoard direction="column" disabled={state === "PAUSED"}>
-        <Stack>
+        <Stack marginBottom={12}>
           <Gameboard />
-          <PieceQueue />
         </Stack>
 
         <ControlBoard justifyContent="space-between" alignItems="center">
