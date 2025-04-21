@@ -25,6 +25,10 @@ export const ControlButton = styled.button`
   padding: 0;
 `;
 
+export const ControlBoard = styled(Stack)`
+  width: 100%;
+`;
+
 export const GameOverDialog = styled.dialog`
   display: block;
   padding: 2rem;

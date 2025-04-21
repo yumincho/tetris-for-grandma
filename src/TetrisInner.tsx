@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Controller } from "react-tetris";
 import {
+  ControlBoard,
   ControlButton,
   FullGameBoard,
   GameOverDialog,
@@ -64,7 +65,7 @@ const TetrisInner = ({
           <PieceQueue />
         </Stack>
 
-        <Stack justifyContent="space-between" alignItems="center">
+        <ControlBoard justifyContent="space-between" alignItems="center">
           <ControlButton onClick={controller.flipClockwise}>
             <FiRotateCw size={24} />
           </ControlButton>
@@ -81,7 +82,7 @@ const TetrisInner = ({
               <FiChevronDown size={24} />
             </ControlButton>
           </Stack>
-        </Stack>
+        </ControlBoard>
       </FullGameBoard>
       {state === "LOST" && (
         <GameOverDialog ref={dialogRef}>
