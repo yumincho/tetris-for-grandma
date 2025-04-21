@@ -35,10 +35,7 @@ const TetrisInner = ({
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
-    console.log("state", state);
-    console.log("dialogRef", dialogRef);
-    dialogRef.current?.close();
-    if (!!dialogRef && state === "LOST") {
+    if (state === "LOST") {
       dialogRef.current?.showModal();
     }
   }, [state]);
