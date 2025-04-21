@@ -47,6 +47,7 @@ export const FullGameBoard = styled(Stack)<{ disabled?: boolean }>`
   display: flex;
   gap: 1rem;
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  width: 80vw;
 `;
 
 export const PauseButton = styled.button`
