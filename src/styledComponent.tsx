@@ -6,12 +6,14 @@ export const Stack = styled.div<{
   justifyContent?: Property.JustifyContent;
   alignItems?: Property.AlignItems;
   spacing?: number;
+  marginBottom?: number;
 }>`
   display: flex;
   flex-direction: ${(props) => props.direction || "row"};
   justify-content: ${(props) => props.justifyContent};
   align-items: ${(props) => props.alignItems || "center"};
   gap: ${(props) => props.spacing || 0}px;
+  margin-bottom: ${(props) => props.marginBottom || 0}px;
 `;
 
 const buttonSize = 44;

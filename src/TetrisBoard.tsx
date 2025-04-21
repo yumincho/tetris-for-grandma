@@ -49,7 +49,7 @@ const TetrisInner = ({
 
   return (
     <div>
-      <Stack justifyContent="space-between">
+      <Stack justifyContent="space-between" marginBottom={24}>
         <Stack direction="column" spacing={4} alignItems="flex-start">
           <Stack spacing={4}>
             <FiStar /> 점수: {points}
