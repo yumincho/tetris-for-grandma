@@ -16,7 +16,7 @@ export const Stack = styled.div<{
   margin-bottom: ${(props) => props.marginBottom || 0}px;
 `;
 
-const buttonSize = 44;
+const buttonSize = 52;
 
 export const ControlButton = styled.button`
   height: ${buttonSize}px;
